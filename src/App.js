@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+// import Card from './components/cardproduct/Card.jsx';
+// import CardData from "./components/cardproduct/CardData.jsx"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+// function App() {
+//   return (
+//     <div>
+//       {
+//         CardData.map((product) => {
+//           // console.log("productId=>",product.id)
+//           return (
+//           <>
+//             <Card Key={product.id} title={product.title} desc={product.description} price={product.price} />
+//           </>
+//           )
+//         })
+//       }
+//     </div>
+//   );
+// }
+// export default App;
+
+
+import React from 'react'
+import Navigation from "./components/route/Navigation.jsx" 
+import Home from './components/pages/Home.jsx'
+
+function App(props) {
+      return (
+  <div>
+      <Home/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
