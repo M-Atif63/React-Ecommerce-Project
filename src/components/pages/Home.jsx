@@ -4,7 +4,7 @@ import Btns from '../buttons/Btns.jsx'
 import Unorderlist from '../unOrderList/Unorderlist.jsx'
 import Inputfields from '../inputFields/Inputfields.jsx'
 import Error from '../error/Error.jsx'
-import { db, ref, set, serverTimestamp } from "../../Firebase.jsx"
+import { db, ref, set } from "../../Firebase.jsx"
 import '../../App.css'
 import Heading from '../headings/Heading.jsx'
 
@@ -16,24 +16,22 @@ function Home() {
     var Desc = document.getElementById("desc").value;
     var Price = document.getElementById("price").value;
     var ImgUrl = document.getElementById("imgUrl").value;
-
+    
+    var message = ""
+    if (Title === "" || Desc === "" || Price === "" || ImgUrl === "") {
+      message = "Please fill all the fields"
+    }
     set(ref(db, 'Products/' + proId), {
       proName: Title,
       desc: Desc,
       product_picture: ImgUrl,
       price: Price,
     });
-    // console.log(proId, Title, Desc, Price, ImgUrl);
+
     document.getElementById("title").value = "";
     document.getElementById("desc").value = "";
     document.getElementById("price").value = "";
     document.getElementById("imgUrl").value = "";
-    
-    if(Title=="" || Desc=="" || Price=="" || ImgUrl==""){
-    return(
-      <Error error="Please fill all the fields"/>
-    )
-    }
 
     var ul = document.getElementById("productCard")
     var li = document.createElement("li")
@@ -48,19 +46,18 @@ function Home() {
     ul.append(li)
 
   }
-
   return (
     <div className="home-container">
       <div className="form-container">
-        <Heading text="Add New Product"/>
+        <Heading text="Add New Product" />
         <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
-        <Error error="Please fill all the fields"/>
+        <Error error=" Please fill all Fields" />
         <Btns btn="Add Product" onclick={proAdded} />
       </div>
-      <Heading value="Your Products"/>
+      <Heading value="Your Products" />
       <Unorderlist />
-    </div>
-  )
+    </div>)
+
 }
 
 export default Home

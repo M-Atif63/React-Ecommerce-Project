@@ -1,11 +1,10 @@
 import React from 'react'
-
-function error(props) {
+function Error(props) {
   return (
     <div>
-        <p id='error'>{props.error}</p>
+      <p>{props.error}</p>
     </div>
   )
 }
 
-export default error
+export default Error
