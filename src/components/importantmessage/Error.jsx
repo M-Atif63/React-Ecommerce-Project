@@ -1,8 +1,9 @@
 import React from 'react'
+
 function Error(props) {
   return (
     <div>
-      <p>{props.error}</p>
+      <p id={props.id}></p>
     </div>
   )
 }

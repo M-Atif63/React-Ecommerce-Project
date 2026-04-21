@@ -3,7 +3,7 @@ import React from 'react'
 function unorderlist(props) {
   return (
     <div>
-        <ul id='productCard'></ul>
+        <ul id={props.id}></ul>
     </div>
   )
 }

@@ -3,12 +3,23 @@ import { Link, Links } from 'react-router-dom'
 import Btns from '../buttons/Btns.jsx'
 import Unorderlist from '../unOrderList/Unorderlist.jsx'
 import Inputfields from '../inputFields/Inputfields.jsx'
-import Error from '../error/Error.jsx'
+import Error from '../importantmessage/Error.jsx'
 import { db, ref, set } from "../../Firebase.jsx"
 import '../../App.css'
 import Heading from '../headings/Heading.jsx'
 
 function Home() {
+return (
+  <div className="home-container">
+    <div className="form-container">
+      <Heading text="Add New Product" />
+      <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
+      <Error id='mess'/>
+      <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
+    </div>
+    <Heading value="Your Products" />
+    <Unorderlist id='productCard'/>
+  </div>)
   console.log("This is alive")
   function proAdded() {
     var proId = Date.now();
@@ -17,15 +28,29 @@ function Home() {
     var Price = document.getElementById("price").value;
     var ImgUrl = document.getElementById("imgUrl").value;
     
-    var message = ""
-    if (Title === "" || Desc === "" || Price === "" || ImgUrl === "") {
-      message = "Please fill all the fields"
+    
+    var error = document.getElementById("mess")
+    var showError = ""
+
+
+    if(Title == "" || Desc == "" || Price == "" || ImgUrl == "") {
+      showError = "Please fill All Fields" 
+      error.style.color = "red"
+      error.innerText = showError
     }
+    else if(!Title == "" || !Desc == "" || !Price == "" || !ImgUrl == "") {
+      var showError = "Add Product Successfully"
+      error.style.color = "green"
+      error.innerText = showError
+    }
+
+
+
     set(ref(db, 'Products/' + proId), {
       proName: Title,
       desc: Desc,
-      product_picture: ImgUrl,
       price: Price,
+      product_picture: ImgUrl,
     });
 
     document.getElementById("title").value = "";
@@ -46,17 +71,7 @@ function Home() {
     ul.append(li)
 
   }
-  return (
-    <div className="home-container">
-      <div className="form-container">
-        <Heading text="Add New Product" />
-        <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
-        <Error error=" Please fill all Fields" />
-        <Btns btn="Add Product" onclick={proAdded} />
-      </div>
-      <Heading value="Your Products" />
-      <Unorderlist />
-    </div>)
+  
 
 }
 
