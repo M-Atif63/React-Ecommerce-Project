@@ -9,69 +9,82 @@ import '../../App.css'
 import Heading from '../headings/Heading.jsx'
 
 function Home() {
-return (
-  <div className="home-container">
-    <div className="form-container">
-      <Heading text="Add New Product" />
-      <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
-      <Error id='mess'/>
-      <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
-    </div>
-    <Heading value="Your Products" />
-    <Unorderlist id='productCard'/>
-  </div>)
   console.log("This is alive")
+
   function proAdded() {
+    var TitleElement = document.getElementById("title");
+    var DescElement = document.getElementById("desc");
+    var PriceElement = document.getElementById("price");
+    var ImgUrlElement = document.getElementById("imgUrl");
+    var errorMsg = document.getElementById("mess");
+    var addBtn = document.getElementById("addBtn"); 
+
+    if (TitleElement.value == "" || DescElement.value == "" || PriceElement.value == "" || ImgUrlElement.value == "") {
+      errorMsg.innerText = "Please fill All Fields";
+      errorMsg.style.color = "red";
+      return;
+    }
+    else {
+      errorMsg.innerText = "";
+    }
+
     var proId = Date.now();
-    var Title = document.getElementById("title").value;
-    var Desc = document.getElementById("desc").value;
-    var Price = document.getElementById("price").value;
-    var ImgUrl = document.getElementById("imgUrl").value;
+    var Title = TitleElement.value;
+    var Desc = DescElement.value;
+    var Price = PriceElement.value;
+    var ImgUrl = ImgUrlElement.value;
+
+    // Fauran (Instantly) UI update karein (Optimistic UI)
+    TitleElement.value = "";
+    DescElement.value =  "";
+    PriceElement.value = "";
+    ImgUrlElement.value = "";
     
-    
-    var error = document.getElementById("mess")
-    var showError = ""
-
-
-    if(Title == "" || Desc == "" || Price == "" || ImgUrl == "") {
-      showError = "Please fill All Fields" 
-      error.style.color = "red"
-      error.innerText = showError
-    }
-    else if(!Title == "" || !Desc == "" || !Price == "" || !ImgUrl == "") {
-      var showError = "Add Product Successfully"
-      error.style.color = "green"
-      error.innerText = showError
-    }
-
-
-
-    set(ref(db, 'Products/' + proId), {
-      proName: Title,
-      desc: Desc,
-      price: Price,
-      product_picture: ImgUrl,
-    });
-
-    document.getElementById("title").value = "";
-    document.getElementById("desc").value = "";
-    document.getElementById("price").value = "";
-    document.getElementById("imgUrl").value = "";
+    errorMsg.innerText = "Adding...";
+    errorMsg.style.color = "blue";
 
     var ul = document.getElementById("productCard")
     var li = document.createElement("li")
     li.innerHTML = `
     <div class="card">
-    <img src=${ImgUrl} alt="Product Image" required>
-    <h1 class="title" required>${Title}</h1>
-    <p class="description" required>${Desc}</p>
-    <p class="prise" required>${Price}</p> 
+    <img width="25px" src="${ImgUrl}" alt="Product Image">
+    <h1 class="title">${Title}</h1>
+    <p class="description">${Desc}</p>
+    <p class="price">Rs : ${Price}</p> 
     </div>
     `
     ul.append(li)
 
+    // Firebase par background mein upload hone dein
+    set(ref(db, 'Products/' + proId), {
+      proName: Title,
+      desc: Desc,
+      price: Price,
+      product_picture: ImgUrl,
+    })
+      .then(() => {
+        errorMsg.innerText = "Product Added Successfully!";
+        errorMsg.style.color = "green";
+      })
+      .catch((err) => {
+        addBtn.disabled = true;
+        errorMsg.innerText = "Error: " + err.message;
+        errorMsg.style.color = "red";
+      });
   }
-  
+
+  return (
+    <div className="home-container">
+      <div className="form-container">
+        <Heading text="Add New Product" />
+        <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
+        <Error id='mess' />
+        <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
+      </div>
+      <Heading value="Your Products" />
+      <Unorderlist id='productCard' />
+    </div>)
+
 
 }
 
