@@ -25,11 +25,12 @@
 import React from 'react'
 import Navigation from "./components/route/Navigation.jsx" 
 import Home from './components/pages/Home.jsx'
+import ProductData from './components/cardproduct/ProductData.js'
 
 function App(props) {
       return (
   <div>
-      <Home/>
+      <Home/>  
     </div>
   )
 }

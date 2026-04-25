@@ -4,12 +4,13 @@ import Btns from '../buttons/Btns.jsx'
 import Unorderlist from '../unOrderList/Unorderlist.jsx'
 import Inputfields from '../inputFields/Inputfields.jsx'
 import Error from '../importantmessage/Error.jsx'
-import { db, ref, set } from "../../Firebase.jsx"
+import { db, ref, set, onValue } from "../../Firebase.jsx"
 import '../../App.css'
 import Heading from '../headings/Heading.jsx'
+import ProductData from '../cardproduct/ProductData.js'
 
 function Home() {
-  console.log("This is alive")
+  // console.log("This is db=>", db)
 
   function proAdded() {
     var TitleElement = document.getElementById("title");
@@ -17,11 +18,18 @@ function Home() {
     var PriceElement = document.getElementById("price");
     var ImgUrlElement = document.getElementById("imgUrl");
     var errorMsg = document.getElementById("mess");
-    var addBtn = document.getElementById("addBtn"); 
+    var addBtn = document.getElementById("addBtn");
 
     if (TitleElement.value == "" || DescElement.value == "" || PriceElement.value == "" || ImgUrlElement.value == "") {
       errorMsg.innerText = "Please fill All Fields";
       errorMsg.style.color = "red";
+      const getData = ref(db, 'Products')
+      onValue(getData, (snapshot) => {
+        const Data = snapshot.val()
+        for (const key in Data) {
+          console.log(Data)
+        }
+      })
       return;
     }
     else {
@@ -34,12 +42,11 @@ function Home() {
     var Price = PriceElement.value;
     var ImgUrl = ImgUrlElement.value;
 
-    // Fauran (Instantly) UI update karein (Optimistic UI)
     TitleElement.value = "";
-    DescElement.value =  "";
+    DescElement.value = "";
     PriceElement.value = "";
     ImgUrlElement.value = "";
-    
+
     errorMsg.innerText = "Adding...";
     errorMsg.style.color = "blue";
 
@@ -55,7 +62,6 @@ function Home() {
     `
     ul.append(li)
 
-    // Firebase par background mein upload hone dein
     set(ref(db, 'Products/' + proId), {
       proName: Title,
       desc: Desc,
@@ -83,9 +89,8 @@ function Home() {
       </div>
       <Heading value="Your Products" />
       <Unorderlist id='productCard' />
+      <ProductData />
     </div>)
-
-
 }
 
 export default Home
