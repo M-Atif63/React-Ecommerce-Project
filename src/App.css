@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   min-height: 100vh;
   margin: 0;
@@ -27,7 +29,7 @@ body {
   background: white;
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -118,7 +120,7 @@ h3 {
 .card {
   background: white;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
   display: flex;
@@ -161,8 +163,400 @@ h3 {
   color: #10b981;
   font-weight: bold;
 }
+
 .card .prise::before {
   content: '$';
   font-size: 20px;
   margin-right: 4px;
+}
+
+/* Layout classes */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #f4f7f6;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Premium Product Grid Layout */
+#productCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 40px 20px;
+  width: 100%;
+  background: linear-gradient(135deg, #f6f8fd 0%, #f1f5f9 100%);
+  min-height: 100vh;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+}
+
+.cardContainer {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+
+.card1 {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card12 {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 160px;
+}
+
+.card-price {
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  text-align: left;
+}
+
+.card-title {
+  color: #1e293b;
+  font-size: 27px;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.card-desc {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.addToCardBtn {
+  flex: 1;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addToCardBtn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.butNowBtn {
+  flex: 1;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease;
+}
+
+.butNowBtn:hover {
+  box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Add New Products Page */
+
+#yourProductCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  gap: 25px;
+  padding: 30px 20px;
+  width: 100%;
+  background: linear-gradient(135deg, #f6f8fd 0%, #f1f5f9 100%);
+  min-height: 40vh;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+}
+
+#yourProductCard li {
+  flex: 1 1 calc(33% - 15px);
+  min-width: 270px;
+  list-style: none;
+}
+
+.cardCon {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 320px;
+  height: auto;
+}
+
+.cardOne {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.cardImg {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardTwo {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 10px;
+}
+
+.cardPrice {
+  color: #10b981;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 5px 0;
+  letter-spacing: -0.5px;
+  text-align: left;
+}
+
+.cardTitle {
+  color: #1e293b;
+  font-size: 27px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.cardDesc {
+  color: #64748b;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardBtns {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.editBtn {
+  flex: 1;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editBtn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.deleteBtn {
+  flex: 1;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease;
+}
+
+.deleteBtn:hover {
+  box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 404 Not Found Page */
+.notfound-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f6f8fd 0%, #eef2ff 50%, #f1f5f9 100%);
+}
+
+.notfound-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 30px 60px rgba(99, 102, 241, 0.1);
+  border-radius: 28px;
+  padding: 60px 80px;
+  text-align: center;
+  max-width: 520px;
+  width: 90%;
+}
+
+.notfound-code {
+  font-size: 120px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.notfound-divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-radius: 4px;
+  margin: 0 auto 24px;
+}
+
+.notfound-title {
+  color: #1e293b;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 14px 0;
+}
+
+.notfound-desc {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 36px 0;
+}
+
+.notfound-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.notfound-btn:hover {
+  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Skeleton Loading Cards */
+@keyframes shimmer {
+  0% { background-position: -700px 0; }
+  100% { background-position: 700px 0; }
+}
+
+.skeleton-card {
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 700px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeleton-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 700px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeleton-line.short { width: 40%; }
+.skeleton-line.long  { width: 80%; height: 20px; }
+.skeleton-line.medium { width: 60%; }
+
+.skeleton-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.skeleton-btn {
+  flex: 1;
+  height: 38px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 700px 100%;
+  animation: shimmer 1.4s infinite linear;
 }

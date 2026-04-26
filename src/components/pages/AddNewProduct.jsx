@@ -9,9 +9,58 @@ import '../../App.css'
 import Heading from '../headings/Heading.jsx'
 import ProductData from '../cardproduct/ProductData.js'
 
-function Home() {
-  // console.log("This is db=>", db)
+const skeletonItem = `
+  <li style="list-style:none">
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line short"></div>
+        <div class="skeleton-line long"></div>
+        <div class="skeleton-line medium"></div>
+        <div class="skeleton-btns">
+          <div class="skeleton-btn"></div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
+    </div>
+  </li>`
 
+function AddNewProduct() {
+  // console.log("This is db=>", db)
+  const getData = ref(db, 'Products/')
+  onValue(getData, (snapshot) => {
+    const data = snapshot.val()
+    let htmlContent = ""
+    for (const key in data) {
+      var proDetail = {
+        proId: data[key].proId,
+        productName: data[key].proName,
+        productDesc: data[key].desc,
+        productPrice: data[key].price,
+        productImg: data[key].product_picture
+      }
+      htmlContent += `
+      <div class="cardCon">
+        <div class="cardOne">
+          <img class="cardImg" src="${proDetail.productImg || 'https://via.placeholder.com/300x200?text=No+Image'}" alt="${proDetail.productName}"/>
+        </div>
+        <div class="cardTwo">
+          <p class="cardPrice">Rs : ${proDetail.productPrice}</p>
+          <h1 class="cardTitle">${proDetail.productName}</h1>
+          <p class="cardDesc">${proDetail.productDesc}</p>
+          <div class="cardBtns">
+            <button class='editBtn'>Edit</button>
+            <button class='deleteBtn'>Delete</button>
+          </div>
+        </div>
+      </div>
+      `
+    }
+    const container = document.getElementById("yourProductCard")
+    if (container) {
+      container.innerHTML = htmlContent;
+    }
+  })
   function proAdded() {
     var TitleElement = document.getElementById("title");
     var DescElement = document.getElementById("desc");
@@ -23,13 +72,6 @@ function Home() {
     if (TitleElement.value == "" || DescElement.value == "" || PriceElement.value == "" || ImgUrlElement.value == "") {
       errorMsg.innerText = "Please fill All Fields";
       errorMsg.style.color = "red";
-      const getData = ref(db, 'Products')
-      onValue(getData, (snapshot) => {
-        const Data = snapshot.val()
-        for (const key in Data) {
-          console.log(Data)
-        }
-      })
       return;
     }
     else {
@@ -49,18 +91,6 @@ function Home() {
 
     errorMsg.innerText = "Adding...";
     errorMsg.style.color = "blue";
-
-    var ul = document.getElementById("productCard")
-    var li = document.createElement("li")
-    li.innerHTML = `
-    <div class="card">
-    <img width="25px" src="${ImgUrl}" alt="Product Image">
-    <h1 class="title">${Title}</h1>
-    <p class="description">${Desc}</p>
-    <p class="price">Rs : ${Price}</p> 
-    </div>
-    `
-    ul.append(li)
 
     set(ref(db, 'Products/' + proId), {
       proName: Title,
@@ -88,9 +118,12 @@ function Home() {
         <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
       </div>
       <Heading value="Your Products" />
-      <Unorderlist id='productCard' />
-      <ProductData />
+      <ul
+        id='yourProductCard'
+        dangerouslySetInnerHTML={{ __html: skeletonItem.repeat(6) }}
+      />
+      {/* <ProductData /> */}
     </div>)
 }
 
-export default Home
+export default AddNewProduct

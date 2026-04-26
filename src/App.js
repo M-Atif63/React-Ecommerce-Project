@@ -23,14 +23,15 @@
 
 
 import React from 'react'
-import Navigation from "./components/route/Navigation.jsx" 
-import Home from './components/pages/Home.jsx'
+import Navigation from "./components/route/Navigation.jsx"
+import Home from './components/pages/AddNewProduct.jsx'
 import ProductData from './components/cardproduct/ProductData.js'
+import Navbar from './components/navbar/Navbar.jsx'
 
 function App(props) {
-      return (
-  <div>
-      <Home/>  
+  return (
+    <div>
+      <Navigation/>
     </div>
   )
 }
