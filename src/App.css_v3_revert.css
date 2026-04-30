@@ -1,0 +1,123 @@
+/* Global Container for Main Content */
+.main-content {
+  background-color: #f4f7f6;
+  padding-top: 80px;
+  min-height: calc(100vh - 80px);
+}
+
+/* Product Cards Container */
+#productCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Reverted Card Container */
+.cardContainer {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.cardContainer:hover {
+  transform: translateY(-5px);
+}
+
+.card1 {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card12 {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 160px;
+}
+
+.card-price {
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  text-align: left;
+}
+
+.card-title {
+  color: #1e293b;
+  font-size: 27px;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.card-desc {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.addToCardBtn {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addToCardBtn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.butNowBtn {
+  flex: 1;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease;
+}

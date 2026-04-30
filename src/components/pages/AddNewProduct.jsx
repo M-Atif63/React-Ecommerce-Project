@@ -120,7 +120,7 @@ function AddNewProduct() {
       <Heading value="Your Products" />
       <ul
         id='yourProductCard'
-        dangerouslySetInnerHTML={{ __html: skeletonItem.repeat(6) }}
+        dangerouslySetInnerHTML={{ __html: skeletonItem.repeat(8) }}
       />
       {/* <ProductData /> */}
     </div>)

@@ -172,30 +172,51 @@ h3 {
 
 /* Layout classes */
 .app-layout {
-  display: flex;
   min-height: 100vh;
   width: 100%;
 }
 
 .main-content {
-  flex-grow: 1;
   background-color: #f4f7f6;
-  overflow-y: auto;
-  height: 100vh;
+  padding-top: 80px;
+  /* Space for fixed top navbar */
+  min-height: calc(100vh - 80px);
 }
 
-/* Premium Product Grid Layout */
-#productCard {
+#productCard, #yourProductCard {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 25px;
-  padding: 40px 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 30px 0; /* Adjusted padding */
   width: 100%;
-  background: linear-gradient(135deg, #f6f8fd 0%, #f1f5f9 100%);
-  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
   box-sizing: border-box;
+  list-style: none; /* Remove bullets */
+}
+
+#yourProductCard li {
   list-style: none;
+  padding: 0;
   margin: 0;
+}
+
+@media (max-width: 1200px) {
+  #productCard, #yourProductCard {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards on medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  #productCard, #yourProductCard {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  #productCard, #yourProductCard {
+    grid-template-columns: repeat(1, 1fr); /* 1 card on mobile */
+  }
 }
 
 .cardContainer {
@@ -263,12 +284,12 @@ h3 {
 
 .card-btns {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
   margin-top: auto;
 }
 
 .addToCardBtn {
-  flex: 1;
   background: #f1f5f9;
   color: #475569;
   border: none;
@@ -509,14 +530,19 @@ h3 {
 
 /* Skeleton Loading Cards */
 @keyframes shimmer {
-  0% { background-position: -700px 0; }
-  100% { background-position: 700px 0; }
+  0% {
+    background-position: -700px 0;
+  }
+
+  100% {
+    background-position: 700px 0;
+  }
 }
 
 .skeleton-card {
   background: #fff;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .skeleton-img {
@@ -542,9 +568,18 @@ h3 {
   animation: shimmer 1.4s infinite linear;
 }
 
-.skeleton-line.short { width: 40%; }
-.skeleton-line.long  { width: 80%; height: 20px; }
-.skeleton-line.medium { width: 60%; }
+.skeleton-line.short {
+  width: 40%;
+}
+
+.skeleton-line.long {
+  width: 80%;
+  height: 20px;
+}
+
+.skeleton-line.medium {
+  width: 60%;
+}
 
 .skeleton-btns {
   display: flex;
