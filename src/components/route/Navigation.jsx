@@ -9,6 +9,9 @@ import Navbar from '../navbar/Navbar.jsx'
 import Logout from '../pages/Logout.jsx'
 import NotFoundedPade from '../pages/NotFoundedPade.jsx'
 import Fedback from '../pages/Fedback.jsx'
+import Product from '../pages/Product.jsx'
+import Signup from '../pages/Signup.jsx'
+import Login from '../pages/Login.jsx'
 
 function Navigation() {
     return (
@@ -17,12 +20,15 @@ function Navigation() {
                 <Navbar/>
                 <div className="main-content">
                     <Routes>
+                        <Route path='/signup' element={<Signup/>} />
+                        <Route path='/login' element={<Login/>} />
                         <Route path='/' element={<Dashboard/>} />
                         <Route path='/about' element={<About />} />
                         <Route path='/addnewproduct' element={<AddNewProduct />} />
                         <Route path='/contact' element={<Contact/>} />
                         <Route path='/fedback' element={<Fedback/>}/>
                         <Route path='/logout' element={<Logout/>}/>
+                        <Route path='/product' element={<Product/>}/>
                         <Route path='*' element={<NotFoundedPade/>}/>
                     </Routes>
                 </div>

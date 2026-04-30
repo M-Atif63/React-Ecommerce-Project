@@ -1,6 +1,7 @@
 import React from 'react'
 import { db, ref, onValue } from "../../Firebase.jsx"
 import "../../App.css"
+import Btns from '../buttons/Btns.jsx'
 
 // Skeleton placeholder for loading state
 const skeletonCard = `
@@ -40,8 +41,8 @@ function Dashboard(props) {
             <h1 class="card-title">${proDetail.productName}</h1>
             <p class="card-desc">${proDetail.productDesc}</p>
             <div class="card-btns">
-              <button class='addToCardBtn'>Add to Cart</button>
-              <button class='butNowBtn'>Buy Now</button>
+            ${<Btns id='add-to-card-btn' class='addToCardBtn' btn='Add To Cart'/>}
+            ${<Btns id='see-detail-btn' class='seeDetailBtn' btn='See More Details'/>}
             </div>
           </div>
         </div>`

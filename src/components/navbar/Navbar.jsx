@@ -6,23 +6,29 @@ function Navbar() {
     return (
         <div className="sidebar">
             <div className="sidebar-logo">
-                Ecommerce
+                Small Things
             </div>
             <div className="nav-links">
                 <NavLink to={'/'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-                    Dashboard
+                    Purchase
                 </NavLink>
                 <NavLink to={'/addnewproduct'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-                    Add New Product
+                    Sell
                 </NavLink>
                 <NavLink to={'/about'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-                    About
+                    Dashboard
                 </NavLink>
                 <NavLink to={'/contact'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
                     Contact
                 </NavLink>
                 <NavLink to={'/fedback'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
                     Fedback
+                </NavLink>
+                <NavLink to={'/signup'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+                    Signup
+                </NavLink>
+                <NavLink to={'/login'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+                    Login
                 </NavLink>
             </div>
             <div className="logout-container">

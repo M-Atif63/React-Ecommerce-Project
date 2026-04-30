@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Btns(props) {
+function  Btns(props) {
   return (
     <div>
-        <button id={props.id} onClick={props.onclick}>{props.btn}</button>
+      <button id={props.id} className={props.className} onClick={props.onclick}>{props.btn}</button>
     </div>
   )
 }
