@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth, createUserWithEmailAndPassword } from '../../Firebase.jsx'
+import { auth, createUserWithEmailAndPassword, GoogleAuthProvider } from '../../Firebase.jsx'
 import './Signup.css'
 import { NavLink } from 'react-router-dom'
 
@@ -26,10 +26,17 @@ function Signup() {
                 setIsError(true);
             });
     }
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log(user)
+        } else {
+        }
+    });
 
     const handleGoogleSignup = async () => {
-        
-    }   
+        const provider = new GoogleAuthProvider();
+
+    }
 
     return (
         <div className="signup-container">
