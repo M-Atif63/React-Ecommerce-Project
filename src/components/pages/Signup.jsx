@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth, createUserWithEmailAndPassword, GoogleAuthProvider } from '../../Firebase.jsx'
+import { auth, createUserWithEmailAndPassword,onAuthStateChanged, GoogleAuthProvider } from '../../Firebase.jsx'
 import './Signup.css'
 import { NavLink } from 'react-router-dom'
 
