@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
 import AddNewProduct from '../pages/AddNewProduct.jsx'
 import About from '../pages/About.jsx'
 // import Firebase from "../../Firebase.jsx"
@@ -12,27 +12,30 @@ import Signup from '../pages/Signup.jsx'
 import Login from '../pages/Login.jsx'
 import Dashboard from '../pages/Dashboard.jsx'
 import Purchase from '../pages/Purchase.jsx'
+import Layout from '../pages/Layout.jsx'
+
+import ProtectedRoute from '../pages/ProtectedRoute.jsx'
 
 function Navigation() {
     return (
         <BrowserRouter>
             <div className="app-layout">
-                <Navbar />
-                <div className="main-content">
-                    <Routes>
-                        <Route path='/signup' element={<Signup />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/' element={<Dashboard/>} />
-                        <Route path='/purchase' element={<Purchase />} />
-                        <Route path='/about' element={<About />} />
-                        <Route path='/addnewproduct' element={<AddNewProduct />} />
-                        <Route path='/contact' element={<Contact />} />
-                        <Route path='/about' element={<About />} />
-                        <Route path='/fedback' element={<Fedback />} />
-                        <Route path='/logout' element={<Logout />} />
-                        <Route path='*' element={<NotFoundedPade />} />
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='*' element={<NotFoundedPade />} />
+                    <Route element={<ProtectedRoute />}>
+                        <Route path='/' element={<Layout />} >
+                            <Route index element={<Dashboard />} />
+                            <Route path='purchase' element={<Purchase />} />
+                            <Route path='about' element={<About />} />
+                            <Route path='addnewproduct' element={<AddNewProduct />} />
+                            <Route path='contact' element={<Contact />} />
+                            <Route path='fedback' element={<Fedback />} />
+                            <Route path='logout' element={<Logout />} />
+                        </Route>
+                    </Route>
+                </Routes>
             </div>
         </BrowserRouter>
     )

@@ -1,6 +1,5 @@
-/* src/components/pages/Signup.css */
 .signup-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,14 +153,13 @@
 }
 
 .message {
-    margin-top: 16px;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .message.error {
-    background-color: #fff5f5;
     color: #c53030;
 }
 

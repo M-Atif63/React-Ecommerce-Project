@@ -28,6 +28,7 @@ import Home from './components/pages/AddNewProduct.jsx'
 import ProductData from './components/cardproduct/ProductData.js'
 import Navbar from './components/navbar/Navbar.jsx'
 
+
 function App(props) {
   return (
     <div>

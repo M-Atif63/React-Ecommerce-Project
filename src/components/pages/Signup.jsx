@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { auth, createUserWithEmailAndPassword,onAuthStateChanged, GoogleAuthProvider } from '../../Firebase.jsx'
+import { auth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '../../Firebase.jsx'
 import './Signup.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function Signup() {
     var [email, setEmail] = useState('')
@@ -9,33 +9,43 @@ function Signup() {
     var [message, setMessage] = useState('')
     var [isError, setIsError] = useState(false)
 
+    const navigate = useNavigate();
+
     const handleSignup = async () => {
         if (email === '' || password === '') {
             setMessage("Please fill all fields");
             setIsError(true);
             return;
         }
-
-        await createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                setMessage("Account Created Successfully!");
-                setIsError(false);
-            })
-            .catch((error) => {
-                setMessage("Account Already Exists");
-                setIsError(true);
-            });
-    }
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            console.log(user)
-        } else {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            setMessage("Account Created Successfully!");
+            setIsError(false);
+            setTimeout(() => navigate('/dashboard'), 1500);
+        } catch (error) {
+            console.error("Signup Error:", error);
+            if (error.code === 'auth/email-already-in-use') {
+                setMessage("Email already in use. Try logging in.");
+            } else if (error.code === 'auth/weak-password') {
+                setMessage("Password should be at least 6 characters.");
+            } else {
+                setMessage("Signup failed: " + error.message);
+            }
+            setIsError(true);
         }
-    });
-
+    }
     const handleGoogleSignup = async () => {
         const provider = new GoogleAuthProvider();
-
+        try {
+            const result = await signInWithPopup(auth, provider);
+            setMessage("Account Created Successfully!");
+            setIsError(false);
+            setTimeout(() => navigate('/dashboard'), 1500);
+        } catch (error) {
+            console.error("Google Sign-In Error:", error);
+            setMessage("Google Sign-In failed: " + error.message);
+            setIsError(true);
+        }
     }
 
     return (
@@ -65,7 +75,6 @@ function Signup() {
                     />
                     <label htmlFor="password" className="floating-label">Password</label>
                 </div>
-
                 {message && (
                     <div className={`message ${isError ? 'error' : 'success'}`}>
                         {message}
@@ -78,7 +87,7 @@ function Signup() {
 
                 <div className="separator">OR</div>
 
-                <button className='cont-with-google-btn' onChange={handleGoogleSignup}>
+                <button className='cont-with-google-btn' onClick={handleGoogleSignup}>
                     <svg width="18" height="18" viewBox="0 0 18 18">
                         <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.91c1.71-1.58 2.69-3.9 2.69-6.6z" />
                         <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.91-2.26c-.8.54-1.83.86-3.05.86-2.34 0-4.33-1.58-5.04-3.71H.95v2.33C2.43 15.89 5.5 18 9 18z" />
