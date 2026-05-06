@@ -1,122 +1,94 @@
-import React, { useState, useEffect } from 'react'
-import { auth, onAuthStateChanged } from '../../Firebase.jsx'
-import { Link } from 'react-router-dom'
-import './Dashboard.css'
+import React from 'react'
+import Btns from '../buttons/Btns'
+import { Navigate } from 'react-router-dom'
 
 function Dashboard() {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-        });
-        return () => unsubscribe();
-    }, []);
-
-    // Mock data for elements
-    const recentOrders = [
-        { id: '#1234', product: 'Nike Air Max', date: '2024-05-01', price: '$120', status: 'completed' },
-        { id: '#1235', product: 'iPhone 15 Pro', date: '2024-05-03', price: '$999', status: 'processing' },
-        { id: '#1236', product: 'MacBook Air', date: '2024-05-04', price: '$1200', status: 'pending' },
-    ];
-
     return (
-        <div className="dashboard-container">
-            {/* 1. Welcome Section Element */}
-            <div className="welcome-section">
-                <img 
-                    src={user?.photoURL || "https://ui-avatars.com/api/?name=" + (user?.displayName || 'User') + "&background=random"} 
-                    alt="User" 
-                    className="user-avatar"
-                />
-                <div className="welcome-text">
-                    <h1>Hello, {user?.displayName || user?.email?.split('@')[0] || 'User'}!</h1>
-                    <p>Welcome to your personal ecommerce dashboard.</p>
+        <div style={{
+            fontFamily: 'sans-serif',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '20px',
+        }}>
+
+            <div style={{
+                width: '100%',
+                maxWidth: '1300px',
+                height: '60px',
+                borderRadius: '10px',
+                background: '#007bff',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: '15px',
+                padding: '2.5rem 1rem',
+                marginBottom: '2rem',
+                boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px'
+            }}>
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', fontWeight: '500', color: '#fff' }}>
+                    AK
                 </div>
+                <h1 style={{ fontSize: '22px',
+                     fontWeight: '500',
+                      color: '#fff',
+                       margin: 0,
+                    }}>Aryan Khan</h1>
             </div>
 
-            {/* 2. Stats Cards Elements */}
-            <div className="stats-grid">
-                <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#eef2ff', color: '#4f46e5' }}>📊</div>
-                    <div className="stat-info">
-                        <h3>$12,450</h3>
-                        <p>Total Revenue</p>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#f0fdf4', color: '#10b981' }}>🛒</div>
-                    <div className="stat-info">
-                        <h3>24</h3>
-                        <p>Total Orders</p>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#fff7ed', color: '#f97316' }}>👥</div>
-                    <div className="stat-info">
-                        <h3>1.2k</h3>
-                        <p>Total Customers</p>
-                    </div>
-                </div>
-                <div className="stat-card">
-                    <div className="stat-icon" style={{ background: '#fdf2f2', color: '#ef4444' }}>📦</div>
-                    <div className="stat-info">
-                        <h3>8</h3>
-                        <p>Low Stock</p>
-                    </div>
-                </div>
-            </div>
+            <div style={{ 
+  flex: '1 1 calc(50% - 7px)',  
+  boxSizing: 'border-box',
+  background: '#fff', 
+  border: '0.5px solid #ddd', 
+  borderRadius: '12px', 
+  padding: '1.25rem', 
+  display: 'flex', 
+  flexDirection: 'row', 
+  gap: '10px' 
+}}>
 
-            {/* 3. Recent Orders Table Element */}
-            <div className="recent-orders">
-                <h2>Recent Transactions</h2>
-                <div className="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Product</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recentOrders.map((order, index) => (
-                                <tr key={index}>
-                                    <td>{order.id}</td>
-                                    <td>{order.product}</td>
-                                    <td>{order.date}</td>
-                                    <td>{order.price}</td>
-                                    <td>
-                                        <span className={`status-badge status-${order.status}`}>
-                                            {order.status}
-                                        </span>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div style={{ background: '#fff', border: '0.5px solid #ddd', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div style={{ width: '38px', height: '38px', background: '#E6F1FB', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        📊
+                    </div>
+                    <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Total Projects</p>
+                    <p style={{ fontSize: '26px', fontWeight: '500', color: '#111', margin: 0 }}>48</p>
+                    <span style={{ fontSize: '12px', background: '#EAF3DE', color: '#3B6D11', padding: '3px 10px', borderRadius: '100px', width: 'fit-content' }}>↑ 12% this month</span>
                 </div>
-            </div>
 
-            {/* 4. Quick Actions Element */}
-            <div className="quick-actions">
-                <h2>Manage Your Store</h2>
-                <div className="action-btns">
-                    <Link to="/addnewproduct" className="action-btn btn-primary">
-                        <span>🚀 Add New Product</span>
-                    </Link>
-                    <Link to="/purchase" className="action-btn btn-secondary">
-                        <span>🛍️ View Inventory</span>
-                    </Link>
-                    <Link to="/fedback" className="action-btn btn-secondary">
-                        <span>💬 Check Feedback</span>
-                    </Link>
+                <div style={{ background: '#fff', border: '0.5px solid #ddd', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div style={{ width: '38px', height: '38px', background: '#E1F5EE', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        👥
+                    </div>
+                    <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Clients</p>
+                    <p style={{ fontSize: '26px', fontWeight: '500', color: '#111', margin: 0 }}>23</p>
+                    <span style={{ fontSize: '12px', background: '#E1F5EE', color: '#085041', padding: '3px 10px', borderRadius: '100px', width: 'fit-content' }}>↑ 5 new</span>
                 </div>
+
+                {/* Card 3 */}
+                <div style={{ background: '#fff', border: '0.5px solid #ddd', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div style={{ width: '38px', height: '38px', background: '#FAEEDA', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        🕐
+                    </div>
+                    <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Hours Logged</p>
+                    <p style={{ fontSize: '26px', fontWeight: '500', color: '#111', margin: 0 }}>312</p>
+                    <span style={{ fontSize: '12px', background: '#FAEEDA', color: '#633806', padding: '3px 10px', borderRadius: '100px', width: 'fit-content' }}>this quarter</span>
+                </div>
+
+                {/* Card 4 */}
+                <div style={{ background: '#fff', border: '0.5px solid #ddd', borderRadius: '12px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <div style={{ width: '38px', height: '38px', background: '#FBEAF0', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        ⭐
+                    </div>
+                    <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Rating</p>
+                    <p style={{ fontSize: '26px', fontWeight: '500', color: '#111', margin: 0 }}>4.9</p>
+                    <span style={{ fontSize: '12px', background: '#FBEAF0', color: '#72243E', padding: '3px 10px', borderRadius: '100px', width: 'fit-content' }}>★★★★★</span>
+                </div>
+
             </div>
         </div>
-    )
+    );
 }
 
 export default Dashboard
