@@ -27,12 +27,13 @@ import Navigation from "./components/route/Navigation.jsx"
 import Home from './components/pages/AddNewProduct.jsx'
 import ProductData from './components/cardproduct/ProductData.js'
 import Navbar from './components/navbar/Navbar.jsx'
+import Cart from './components/pages/Cart.jsx'
 
 
 function App(props) {
   return (
     <div>
-      <Navigation/>
+      <Cart/>
     </div>
   )
 }
