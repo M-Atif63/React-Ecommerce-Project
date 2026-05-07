@@ -41,6 +41,12 @@ function Purchase() {
 
   const skeletons = skeletonCard.repeat(8);
 
+
+  function AddProInCarts(){
+    
+  }
+
+
   return (
     <div className="dashboard-wrapper">
         <div id='productCard'>
@@ -64,7 +70,7 @@ function Purchase() {
                   <h1 className="card-title">{pro.proName}</h1>
                   <p className="card-desc">{pro.desc}</p>
                   <div className="card-btns">
-                    <Btns id='add-to-card-btn' class='addToCardBtn' btn='Add To Cart'/>
+                    <Btns id='add-to-card-btn' class='addToCardBtn'btn={<i class="fa-solid fa-cart-shopping"></i>} onclick={AddProInCarts}/>
                   </div>
                 </div>
               </div>
