@@ -33,7 +33,7 @@ import Cart from './components/pages/Cart.jsx'
 function App(props) {
   return (
     <div>
-      <Cart/>
+      <Navigation/>
     </div>
   )
 }
