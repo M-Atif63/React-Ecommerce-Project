@@ -7,7 +7,6 @@ import Error from '../importantmessage/Error.jsx'
 import { db, ref, set, onValue } from "../../Firebase.jsx"
 import '../../App.css'
 import Heading from '../headings/Heading.jsx'
-import ProductData from '../cardproduct/ProductData.js'
 
 const skeletonItem = `
   <li style="list-style:none">

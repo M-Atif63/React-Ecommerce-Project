@@ -15,6 +15,7 @@ import Purchase from '../pages/Purchase.jsx'
 import Layout from '../pages/Layout.jsx'
 
 import ProtectedRoute from '../pages/ProtectedRoute.jsx'
+import ProductDetails from '../pages/ProductDetails.jsx'
 
 function Navigation() {
     return (
@@ -33,6 +34,7 @@ function Navigation() {
                             <Route path='contact' element={<Contact />} />
                             <Route path='fedback' element={<Fedback />} />
                             <Route path='logout' element={<Logout />} />
+                            <Route path='productdata/:id' element={<ProductDetails />} />                           
                         </Route>
                     </Route>
                 </Routes>
