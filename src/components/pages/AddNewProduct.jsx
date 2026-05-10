@@ -7,6 +7,7 @@ import Error from '../importantmessage/Error.jsx'
 import { db, ref, set, onValue } from "../../Firebase.jsx"
 import '../../App.css'
 import Heading from '../headings/Heading.jsx'
+import SearchField from '../inputFields/SearchField.jsx'
 
 const skeletonItem = `
   <li style="list-style:none">
@@ -117,11 +118,11 @@ function AddNewProduct() {
         <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
       </div>
       <Heading value="Your Products" />
+        <SearchField/>
       <ul
         id='yourProductCard'
         dangerouslySetInnerHTML={{ __html: skeletonItem.repeat(8) }}
       />
-      {/* <ProductData /> */}
     </div>)
 }
 

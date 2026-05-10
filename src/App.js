@@ -33,7 +33,7 @@ import ProductData from './components/pages/ProductData.jsx'
 function App(props) {
   return (
     <div>
-      <ProductData/>
+      <Navigation/>
     </div>
   )
 }

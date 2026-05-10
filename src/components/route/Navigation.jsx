@@ -13,8 +13,8 @@ import Login from '../pages/Login.jsx'
 import Dashboard from '../pages/Dashboard.jsx'
 import Purchase from '../pages/Purchase.jsx'
 import Layout from '../pages/Layout.jsx'
-
 import ProtectedRoute from '../pages/ProtectedRoute.jsx'
+import ProductData from '../pages/ProductData.jsx'
 import ProductDetails from '../pages/ProductDetails.jsx'
 
 function Navigation() {
@@ -28,13 +28,13 @@ function Navigation() {
                     <Route element={<ProtectedRoute />}>
                         <Route path='/' element={<Layout />} >
                             <Route index element={<Dashboard />} />
-                            <Route path='purchase' element={<Purchase />} />
+                            <Route path='products' element={<ProductData />} />
+                            <Route path='products/:id' element={<ProductDetails />} />                           
                             <Route path='about' element={<About />} />
                             <Route path='addnewproduct' element={<AddNewProduct />} />
                             <Route path='contact' element={<Contact />} />
                             <Route path='fedback' element={<Fedback />} />
                             <Route path='logout' element={<Logout />} />
-                            <Route path='productdata/:id' element={<ProductDetails />} />                           
                         </Route>
                     </Route>
                 </Routes>

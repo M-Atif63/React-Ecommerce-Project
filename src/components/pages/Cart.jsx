@@ -47,7 +47,10 @@ function Cart() {
                 <Btns
                     id='cartBtn'
                     className='CartBtn'
-                    btn={<><i className="fa-solid fa-cart-shopping"></i> <span className="badge">3</span></>}
+                    btn={<><i className="fa-solid fa-cart-shopping">
+                        </i>
+                         {/* <span className="badge">{count}</span> */}
+                        </>}
                     onClick={toggleCart}
                 />
             </div>

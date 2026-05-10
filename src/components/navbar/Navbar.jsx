@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
+import Cart from '../pages/Cart';
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,7 @@ function Navbar() {
                         <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                         <span>Dashboard</span>
                     </NavLink>
-                    <NavLink to={'/purchase'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"} onClick={() => setIsMenuOpen(false)}>
+                    <NavLink to={'/products'} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"} onClick={() => setIsMenuOpen(false)}>
                         <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                         <span>Purchase</span>
                     </NavLink>
@@ -54,7 +55,6 @@ function Navbar() {
                         <span>Sell</span>
                     </NavLink>
                 </div>
-
                 <div className="logout-container">
                     <NavLink to={'/logout'} className="logout-item" onClick={() => setIsMenuOpen(false)}>
                         <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
