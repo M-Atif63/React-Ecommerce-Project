@@ -3,7 +3,7 @@ import React from 'react'
 function Error(props) {
   return (
     <div>
-      <p id={props.id}></p>
+      <p>{props.value}</p>
     </div>
   )
 }

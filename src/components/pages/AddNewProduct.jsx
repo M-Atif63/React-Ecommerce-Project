@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Links } from 'react-router-dom'
 import Btns from '../buttons/Btns.jsx'
 import Unorderlist from '../unOrderList/Unorderlist.jsx'
@@ -26,7 +26,7 @@ const skeletonItem = `
   </li>`
 
 function AddNewProduct() {
-  // console.log("This is db=>", db)
+  const [message,setMessage] = useState('')
   const getData = ref(db, 'Products/')
   onValue(getData, (snapshot) => {
     const data = snapshot.val()
@@ -68,14 +68,14 @@ function AddNewProduct() {
     var ImgUrlElement = document.getElementById("imgUrl");
     var errorMsg = document.getElementById("mess");
     var addBtn = document.getElementById("addBtn");
-
     if (TitleElement.value == "" || DescElement.value == "" || PriceElement.value == "" || ImgUrlElement.value == "") {
-      errorMsg.innerText = "Please fill All Fields";
-      errorMsg.style.color = "red";
+      setMessage('Please Fill out all Fields')
+      console.log("message=>",message)
+      message.style.color='red'
       return;
     }
     else {
-      errorMsg.innerText = "";
+      
     }
 
     var proId = Date.now();
@@ -114,11 +114,11 @@ function AddNewProduct() {
       <div className="form-container">
         <Heading text="Add New Product" />
         <Inputfields proTitle="Enter Product Title" proDescription="Enter Product Description" ProPrice="Enter Product Price" proImgUrl="Enter Product Image Url" />
-        <Error id='mess' />
+        <Error val  ue={message}/>
         <Btns btn="Add Product" id="addBtn" onclick={proAdded} />
       </div>
       <Heading value="Your Products" />
-        <SearchField/>
+      <SearchField />
       <ul
         id='yourProductCard'
         dangerouslySetInnerHTML={{ __html: skeletonItem.repeat(8) }}
